@@ -1,1 +1,1 @@
-document.body.classList.add('request');
+document.body.classList.remove('request');
