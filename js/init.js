@@ -35,39 +35,54 @@ var localDebug		= cce('a', '', {href: 'https://starsystem.github.io/naledi'}),
 		rawCdn				= ['https://cdn.rawgit.com', repoFullname].join('/'),
 		branchRef			= {};
 
-// Resolve branch ref api url
-function branchRefUrl (branch) {
-	var b = branch || 'master';
-	return [apiRepo, 'git/refs/heads', b].join('/');
+// Error callback
+function errore (e) {
+	console.log('error: ' + e);
 }
 
-// append javascript in document.head
-function appendScript (url, timestamp) {
-	if (timestamp) {
-		url += (url.indexOf('?') < 0) ? '?time=' : '&time=';
-		url += new Date().getTime();
-	}
+// parse JSON
+function jsonize (response) {
+	return response.json();
+}
+
+// get Git Reference for a branch
+function getRef (branch) {
+	var b = branch || 'master';
+	var options = {
+		header: {'Accept': 'application/vnd.github.v3+json'},
+		cache: 'no-cache'
+	};
+	return fetch([apiRepo, 'git/refs/heads', b].join('/'), options)
+		.then(jsonize)
+		.then(function (head) {
+			// get ref
+			return head.object.sha;
+		})
+		.catch(function () {
+			// fallback ref
+			return b;
+		})
+		.then(function (ref) {
+			// store ref
+			branchRef[b] = ref;
+			return ref;
+		})
+		.catch(errore);
+}
+
+function appendScript (url) {
 	var s = cce('script', '', {'src': url});
 	document.getElementsByTagName('head')[0].appendChild(s);
 }
 
-// Store branch ref
-function storeRef (r) {
-	if (r.meta.status > 199 && r.meta.status < 400) {
-		var branch = r.data.ref.split('/').pop();
-		branchRef[branch] = r.data.object.sha;
-		return true;
-	}
-	return false;
-}
-
-function appendLoader (r) {
-	var loaderUrl = [rawStatic, 'master/js/loader.js'].join('/');
-	if (storeRef(r)) loaderUrl = [rawCdn, r.data.object.sha, 'js/loader.js'].join('/');
+function appendLoader (ref) {
+	var loaderUrl = [rawCdn, ref, 'js/loader.js'].join('/');
 	if (window.location.hostname === '127.0.0.1') loaderUrl = 'js/loader.js';
 	return appendScript(loaderUrl);
 }
 
-// Request master ref (with timestamp)
 document.body.classList.add('request');
-appendScript([branchRefUrl(), 'callback=appendLoader'].join('?'), 1);
+
+getRef()
+.then(appendLoader)
+.catch(errore);
