@@ -1,2 +1,2 @@
 # naledi
-Naledi wake up
+Naledi it's a basic game

@@ -1,0 +1,45 @@
+.float-right { float: right; }
+
+[aria-hidden='true'] { display: none; }
+
+html { overflow-y: scroll; }
+
+body.request main { background-image: url("../images/spinner.gif"); background-repeat: no-repeat; background-position: center; }
+body main, body header, body footer { padding: 3rem; }
+body nav { padding: 1em; }
+body main, body header h1, body header p, body footer p, body nav p { max-width: 50rem; margin-left: auto; margin-right: auto; }
+body.wide main, body.wide header h1, body.wide header p, body.wide footer p, body.wide nav p { max-width: initial; margin-left: initial; margin-right: initial; }
+
+a, main a { color: #808080; text-decoration: underline;}
+header a:hover, main a:hover, footer a:hover { text-decoration: none; }
+a:active, main a:active { opacity: 0.5; }
+
+nav a { font-size: large; text-decoration: none; }
+nav a.active { opacity: 0.5; }
+nav a:hover { background-color: white; }
+
+header { background-color: #808080; color: rgba(255, 255, 255, 0.5); }
+header h1 { font-weight: 200; margin: 0; padding: 0; color: white; }
+header h1 span { color: rgba(255, 255, 255, 0.5); font-size: .8em; margin-left: .5em;}
+header p { font-size: 1.3em; font-weight: 200; padding: 0; margin: 0.5em 0 0 0; }
+header a { color: rgba(255, 255, 255, 0.5); }
+header a:active { color: white; opacity: 1; }
+
+footer, nav { background-color: #f5f5f5; }
+footer a, nav a { margin: 0 1em; }
+footer p, nav p { margin: 0; }
+
+body.cadetblue main a { color: #4078c0; }
+body.cadetblue header { background-color: #4078c0; }
+
+body.lightred main a { color: #c04040; }
+body.lightred header { background-color: #c04040; }
+
+body.forest main a { color: #40bf46; }
+body.forest header { background-color: #40bf46; }
+
+body.melma main a { color: #009688; }
+body.melma header { background-color: #009688; }
+
+body.cave main a { color: #a45e0a; }
+body.cave header { background-color: #a45e0a; }
