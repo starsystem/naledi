@@ -4,10 +4,10 @@
 * supplentary variables
 */
 var userType, // false = guest, true = owner
-		repoType, // false = user, true = organization
-		userButton = (logged) ?
-			cce('a', 'Logout', {href: './logout', class: 'float-right'}) :
-			cce('a', 'Login', {href: './login', class: 'float-right'});
+	repoType, // false = user, true = organization
+	userButton = (logged) ?
+		cce('a', 'Logout', {href: './logout', class: 'float-right'}) :
+		cce('a', 'Login', {href: './login', class: 'float-right'});
 
 /*
 *
