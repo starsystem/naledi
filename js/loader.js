@@ -28,31 +28,31 @@ function cce (tag, inner, attributes) {
 *
 */
 var headElement		= document.getElementsByTagName('head')[0],
-		section				= document.querySelector('section'),
-		nav						= document.querySelector('nav p'),
-		footer				= document.querySelector('footer p'),
-		pagePath			= (window.location.hostname === '127.0.0.1') ?
-			window.location.pathname.split('/').slice(4).join('/').slice(0, -1) :
-			loc.pathname.split('/').slice(2).join('/'),
-		localDebug		= cce('a', '', {href: 'https://starsystem.github.io/naledi'}),
-		loc						= (window.location.hostname === '127.0.0.1') ? localDebug : window.location,
-		urlSlash			= loc.pathname.split('/'),
-		urlHash				= loc.hash.substring(1),
-		repoOwner			= loc.host.split('.')[0],
-		repoName			= urlSlash[1],
-		repoFullname	= [repoOwner, repoName].join('/'),
-		repoUrl				= ['https://github.com', repoFullname].join('/'),
-		repoHome			= (window.location.hostname === '127.0.0.1') ?
-		 	window.location.pathname.split('/').slice(0, 4).join('/') :
-			['https://' + owner + '.github.io', repoName].join('/'),
-		apiGitHub			= 'https://api.github.com',
-		apiRepos			= [apiGitHub, 'repos'].join('/'),
-		apiRepo				= [apiRepos, repoFullname].join('/'),
-		rawStatic			= ['https://rawgit.com', repoFullname].join('/'),
-		rawCdn				= ['https://cdn.rawgit.com', repoFullname].join('/'),
-		logged				= (localStorage.getItem('naledi|token')) ? true : false,
-		branchRef			= {},
-		repos					= {};
+	section			= document.querySelector('section'),
+	nav				= document.querySelector('nav p'),
+	footer			= document.querySelector('footer p'),
+	pagePath		= (window.location.hostname === '127.0.0.1') ?
+		window.location.pathname.split('/').slice(4).join('/').slice(0, -1) :
+		loc.pathname.split('/').slice(2).join('/'),
+	localDebug		= cce('a', '', {href: 'https://starsystem.github.io/naledi'}),
+	loc				= (window.location.hostname === '127.0.0.1') ? localDebug : window.location,
+	urlSlash		= loc.pathname.split('/'),
+	urlHash			= loc.hash.substring(1),
+	repoOwner		= loc.host.split('.')[0],
+	repoName		= urlSlash[1],
+	repoFullname	= [repoOwner, repoName].join('/'),
+	repoUrl			= ['https://github.com', repoFullname].join('/'),
+	repoHome		= (window.location.hostname === '127.0.0.1') ?
+		window.location.pathname.split('/').slice(0, 4).join('/') :
+		['https://' + owner + '.github.io', repoName].join('/'),
+	apiGitHub		= 'https://api.github.com',
+	apiRepos		= [apiGitHub, 'repos'].join('/'),
+	apiRepo			= [apiRepos, repoFullname].join('/'),
+	rawStatic		= ['https://rawgit.com', repoFullname].join('/'),
+	rawCdn			= ['https://cdn.rawgit.com', repoFullname].join('/'),
+	logged			= (localStorage.getItem('naledi|token')) ? true : false,
+	branchRef		= {},
+	repos			= {};
 
 // check status 401 and parse json
 function dataHandler (response) {
