@@ -44,7 +44,7 @@ var headElement		= document.getElementsByTagName('head')[0],
 	repoUrl			= ['https://github.com', repoFullname].join('/'),
 	repoHome		= (window.location.hostname === '127.0.0.1') ?
 		window.location.pathname.split('/').slice(0, 4).join('/') :
-		['https://' + owner + '.github.io', repoName].join('/'),
+		['https://' + repoOwner + '.github.io', repoName].join('/'),
 	apiGitHub		= 'https://api.github.com',
 	apiRepos		= [apiGitHub, 'repos'].join('/'),
 	apiRepo			= [apiRepos, repoFullname].join('/'),
